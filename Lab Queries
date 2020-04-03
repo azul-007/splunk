@@ -1,0 +1,37 @@
+Lab 9, Task 2
+index=main sourcetype="access_combined_wcookie" status=200 | rare file
+
+index=main sourcetype="access_combined_wcookie" status=200 | rare file by date_month
+
+
+Lab 9, Task 3
+index=main sourcetype="access_combined_wcookie" status=200 file=cart.do OR file=success.do | stats count as "Transactions" by file | rename file as "Function"
+
+Lab 9, Task 4
+index=main sourcetype="access_combined_wcookie" | stats dc(JSESSIONID) as "Logins" by clientip | sort -Logins
+
+Lab 9, Task 5
+index=main sourcetype="access_combined_wcookie" status=200 | stats sum(bytes) as "TotalBytes" by file | sort file
+
+Lab 9, Task 6
+index=main sourcetype="db_audit"  | stats avg(Duration) as "time to complete" by Command | sort -"time to complete"
+
+Lab 9 Task 7
+index=main sourcetype="access_combined_wcookie" | stats values(useragent) as "Agents Used" count as "Times Used" by useragent | table "Agents Used", "Times Used"
+
+Lab 10 Task 1
+
+Lab 10, Task 3
+index=main sourcetype="access_combined_wcookie" status=403 | stats count as "attempts" by clientip
+
+Lab 10, Task 4
+index=main sourcetype="access_combined_wcookie" status=403 | stats count as "attempts" by clientip | sort -attempts
+
+Lab 10 Task 2
+index=main sourcetype="access_combined_wcookie" status=200 file=success.do | stats count by productId
+
+Lab 12, Task 3
+index=main sourcetype="access_combined_wcookie" status=200 file=success.do | lookup products_lookup productId as productId OUTPUT product_name as ProductName | stats count by ProductName
+
+Lab 12, Task 5
+index=main sourcetype="access_combined_wcookie" status=200 file=success.do | stats sum(Price) as Revenue by ProductName

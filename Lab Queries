@@ -1,3 +1,99 @@
+Table
+- This command will only display the JSession ID, price and product name
+	
+	index=web sourcetype=access* status=200 product_name=* | table JSESSIONID,price,product_name
+
+
+Rename
+- This command is used to rename fields. If using a phrase as a new field name, wrap the new name in quotes
+
+	index=web sourcetype=access* status=200 product_name=* | table JSESSIONID,price,product_name | 
+	rename JSESSIONID as “User Session”
+
+Dedup
+- Removes events with duplicate values
+- The following command will remove duplicate entries of the user name by their first and last names
+
+	index=security sourcetype=history* Address_Description=“San Francisco” | dedup Username | 
+	table Username First_Name Last_Name
+
+Sort
+- Sorts results in ascending or descending order
+- Sort on two fields
+
+	sourcetype=vendor_sales | table Vendor product_name sale_price | sort Vendor product_name
+
+- By default a field will be displayed in ascending order. This can also be indicated by the + sign. The following command sorts by the sale_price and Vendor. 
+
+	sourcetype=vendor_sales | table Vendor product_name sale_price | sort + sale_price Vendor
+
+- The placement of the +/- affects the fields to search on. If there is a space between the +/- operators and the fields to sort on, both fields will be affected. If there is no space, only the field directly behind the +/- is affected. 
+
+- We can also limit the number of events with the limit command
+
+	sourcetype=vendor_sales | table Vendor product_name sale_price | sort + sale_price Vendor limit=20
+
+Top
+
+- Finds common values in given fields
+- The following query displays the top vendors by count…searches are limited to 10 by default
+    - index=sales sourcetype=vendor_sales | top Vendor
+    - add limit=0 for all results, limit=20 for the top etc.
+- Searches can be done on multiple fields as well.
+    - index=sales sourcetype=vendor_sales | top Vendor product_name limit=0
+- Clauses can be used with the top command to change the count and percentage columns or to not show them at all
+    - Command Clauses
+        - limit=int
+        - countfield=string
+        - percentfield=string
+        - showcount=True/False
+        - showperc=True/False
+        - showother=True/False
+        - otherstr=string
+    - Show the top 5 vendors, disregarding percentages…
+        - index=sales sourcetype=vendor_sales | top Vendor limit=5 showperc=False
+        - adding a row for the number of sells for vendors not listed in the top 5..
+            - index=sales sourcetype=vendor_sales | top Vendor useother=True
+    - Display the top three products sold by each vendor..
+        - index=sales sourcetype=vendor_sales | top by Vendor limit=3 countfield=“Number of Sales” showperc=False
+
+Rare
+- Show the least common values of a field set
+    - index=sales sourcetype=vendor_sales | rare by Vendor limit=3 countfield=“Number of Sales” showperc=False
+
+Stats
+- Produces statistics of search results
+- Some commands are: distinct, distinct count, sum, avg, list, values
+- Count
+    - Find the total numbe # of vendor sales..
+        - index=sales sourcetype=vendor_sales | stats count as “Total Sells By Vendors” by product_name, categoryId, sale_price
+    - Get the total # of events where a given field is present by using that field as an argument in the count function…
+    - Count all the events in the Buttercup games weblogs where a customer action occurs and compare it with the total.
+        - index=web sourcetype=access_combined | stats count(action) as ActionEvents, count as “Total Events”
+- Distinct Count
+    - Display # of distinct game titles for sale by vendors..
+    - index=web sourcetype=vendor_sales | stats dc(product_name) as “Number of gamers for sale by vendors” by sale_price
+- Sum
+    - Get the sum of all sales for each product
+    - index=web sourcetype=vendor_sales | stats count as “Units Sold” sum(price) as “Gross Sales“ by product_name
+- Avg
+    - Find the average selling price of games sold by vendor
+    - index=web sourcetype=vendor_sales | stats avg(sale_price) as “Average Selling Price” by product_name
+- List
+    - Lists all values for a given field.
+    - index=bcgassets sourcetype=asset_list | stats list(Asset) as “company assets” by Employee
+- Value
+    - Returns unique values…display a list of sites each user has visited..
+    - index=network sourcetype=cisco_wsa_squid | stats values(s_hostname) by cs_username
+
+Lookups
+- Lookups allow you to add other fields and values to your events not included in the indexed data.
+    - csv files, scripts, geospatial data
+- To create a lookup file: define a lookup table and define the lookup.
+- Lookup files are case sensitive.
+- To verify a look up is working pipe the file into the inputlookup command
+    - index=web sourcetype=access_combined NOT status=200 | lookup http_status code as status, OUTPUT code as “HTTP Code”, description as “HTTP Description”
+
 Lab 9, Task 2
 index=main sourcetype="access_combined_wcookie" status=200 | rare file
 

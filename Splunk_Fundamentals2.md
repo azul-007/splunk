@@ -13,7 +13,13 @@ each error occured on each host
 ```
 index=web sourcetype=access_combined status > 299
 product_name=*
-| chart count over host by product_name 
+| chart count over host by product_name limit=10
 ```
 
 ### Timechart Command
+- Performs stats aggregations against time
+- As with chart any stats function can be used with the chart command. The same applies for the "by" clause as in the chart command.
+```
+index=sales sourcetype=vendor_sales
+| timechart sum(price) by product_name limit=0
+```

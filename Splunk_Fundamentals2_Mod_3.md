@@ -29,3 +29,18 @@ To change the span of the time of the cluster, you can use an arguement of span 
 index=sales sourcetype=vendor_sales
 | timechart span=12hr sum(price) by product_name limit=0
 ```
+
+### Timewrap Command
+Compares data over specific time periods, such as comparing this weeks game sales to last weeks games sales.
+Say you're comparing the sales for "Dream Crusher" over the last 27 days. To use the **timewrap** command, specify
+a period of time from the results of the timechart command. Splunk will format the results, so every increment of that
+period is a different is a different series.
+
+The timewrap value of 7d, splits the 27 day time range into four segments
+```JavaScript
+index=sales sourcetype=vendor_sales product_name="Dream Crusher"
+| timechart span=1d sum(price) by product_name
+| timewrap 7d 
+| rename _time as Day
+| eval Day = strftime(Dy, "%A")
+```

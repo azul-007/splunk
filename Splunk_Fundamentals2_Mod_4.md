@@ -61,3 +61,16 @@ The trendline command takes three arguments:
 * The wma and ema assign a heavier weighting to more current data points
 * You need to define a period of time to use for computing the trend, this needs to been an integer 2<=10000
 * In the example above I'm searching over the last 7 days, so a number of 2 will average the data points of every two days.
+
+### Addtotals
+
+Will compute the sum of all numeric fields for each row and create a "Total" column
+
+- Create a column summary by setting the "col" variable to true
+- add a lable...label="Total" and the label field variable with the field to show the label in..labelfield="host"
+
+```JavaScript
+index=web sourcetype=access_combined file=*
+| chart sum(bytes) over host by file
+| addtotals col=true label="Total" labelfield="host"
+```

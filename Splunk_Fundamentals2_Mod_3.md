@@ -10,7 +10,7 @@ Takes two clause statements: over and by
 
 The following example will search your web logs for any errors and tally how many times
 each error occured on each host
-```
+```JavaScript
 index=web sourcetype=access_combined status > 299
 product_name=*
 | chart count over host by product_name limit=10
@@ -19,7 +19,13 @@ product_name=*
 ### Timechart Command
 - Performs stats aggregations against time
 - As with chart any stats function can be used with the chart command. The same applies for the "by" clause as in the chart command.
-```
+```JavaScript
 index=sales sourcetype=vendor_sales
 | timechart sum(price) by product_name limit=0
+```
+
+To change the span of the time of the cluster, you can use an arguement of span with the time to group by.
+```JavaScript
+index=sales sourcetype=vendor_sales
+| timechart span=12hr sum(price) by product_name limit=0
 ```

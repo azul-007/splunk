@@ -12,7 +12,7 @@ A transaction is any group of related events that span time
 
 [Investigate with Transactions](#investigate-with-transactions)
 
-[Transactions vs Stats](#transcations-vs-stats)
+[Transactions vs Stats](#transcations-vs-stats) 
 
 
 

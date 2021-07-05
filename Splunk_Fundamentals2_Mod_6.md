@@ -74,3 +74,17 @@ index=network sourcetype=cisco_esa
 
 ### Transactions vs Stats
 ------------
+
+When should you use transactions as opposed to stats and vice versa?
+
+Use transactions when:
+
+1) You need to see events correlated together
+2) Use when events  need to be grouped on start and end values
+
+Use stats when:
+
+1) Want to see results of a calculation
+2) Or when you need to group events on a field value
+
+Stats command is faster and more efficient.

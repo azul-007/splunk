@@ -43,7 +43,21 @@ index=web sourcetype=access_combined
 ### Transaction Definition
 ------------
 
+The transaction command includes some definitions options. The most common being maxspan, maxpause, startswith and endswith.
 
+- **maxspan:**  allows you to set the total time between the earliest and latest events.
+- **maxpause:**  is the maximum total time allowed between events. 
+- **startswith:**  allows forming transactions starting with specified terms, field values, evaluations
+- **endswith:** allows forming transactions ending with specified terms, field values, evaluations
+
+The following shows a query depicting transactions that occur when a customer adds an item to their shopping cart and ends
+when they purchase the item.
+
+```JavaScript
+index=web sourcetype=access_combined startswith="addtocart" endswith="purchase"
+| transaction client 
+| table clientip, action, product_name
+```
 
 ### Investigate with Transactions
 ------------

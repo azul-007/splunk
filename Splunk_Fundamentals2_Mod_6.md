@@ -54,8 +54,8 @@ The following shows a query depicting transactions that occur when a customer ad
 when they purchase the item.
 
 ```JavaScript
-index=web sourcetype=access_combined startswith="addtocart" endswith="purchase"
-| transaction client 
+index=web sourcetype=access_combined 
+| transaction client startswith="addtocart" endswith="purchase"
 | table clientip, action, product_name
 ```
 

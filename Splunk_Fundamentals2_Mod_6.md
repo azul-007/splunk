@@ -61,8 +61,16 @@ index=web sourcetype=access_combined startswith="addtocart" endswith="purchase"
 
 ### Investigate with Transactions
 ------------
+Say you wanted to search what emails were rejected by your security appliances, you could search for the term "reject" for the 
+sourcetype. But you also want to see the IP of the sender and the actin taken by the mail server after the rejection. You can pipe
+the sourcetype into a transaction that occurs on multiple fields, use a search command on those transactions to see all events that
+happen around that rejection. 
 
-
+```JavaScript
+index=network sourcetype=cisco_esa
+| transaction mid dcid icid
+| search REJECT
+```
 
 ### Transactions vs Stats
 ------------

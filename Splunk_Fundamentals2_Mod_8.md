@@ -42,5 +42,7 @@ You can use the Field Extractor from the settings menu to begin extracting field
 ### Extract Multiple Fields
 ------------
 
-
+To be able to select a value from an already extracted field, open the "Existing Fields" menu and turn off
+the highlight for the field that includes the value. This does not remove your already extracted field but 
+hides it in the Field Extractor Interface
 

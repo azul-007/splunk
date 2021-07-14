@@ -1,5 +1,7 @@
 # Filtering and Formatting
 
+
+
 [The Eval Command](#the-eval-command)
 
 [Eval Mathematical Functions](#eval-mathematical-functions)
@@ -30,6 +32,16 @@
 
 ### The Eval Command
 ---------------------
+
+The eval command is used to calculate and manipulate field values: arthmetic, concatenation and boolean operators operators are supported.
+Field values created by the eval command are case sensitive. The fields - Bytes command, removes the Bytes field from the column results.
+
+```Javascript
+index=network sourcetype=cisco_wsa_squid
+| stats sum(sc_bytes) as Bytes by usage
+| eval bandwidth = round(Bytes/1024/1024,2)
+| fields - Bytes
+```
 
 
 ### Eval Mathematical Functions

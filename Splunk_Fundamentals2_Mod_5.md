@@ -126,21 +126,54 @@ index=web sourcetype=access_combined
 ### Search Command
 ---------------------
 
+The search command can be used to filter results at any time in the search. It allows you to filter your results further down the search pipeline.
+
+The example below shows a search that finds how many times an employee has visited a prohibited site in the last 30 days.
+
+```JavaScript
+index=network sourcetype=cisco_wsa_squid usage=Violation
+| stats count(usage) as Vists by cs_username
+| search Visits > 1
+```
+
 
 
 
 ### Where Command
 ---------------------
 
+Uses the same expressions as eval.
+The example below shows a report of employees that have visited more personal sites than business sites over the past 7 days.
 
+```JavaScript
+index=network sourcetype=cisco_wsa_squid 
+| stats count(eval(usage="Personal")) as Personal, count(eval(usage="Business")) as Business by username
+| where Personal > Business | where username!="lsagers" | sort -Personal
+```
+
+Without the double quotes around lsagers, Splunk will treat the argument as a field, with it, it'll be treated as a literal.
 
 
 
 ### Eval/Where Tips
 ---------------------
 
+- Inside either askerisks cannot be used as a wildercard. Use the like operator with either the %(matches multiple characters) or _ (matches one) characters.
+- If you want to determien if a field is null or not, use the isnull or isnotnull functions
+- When evaluating a field value, values are case sensitive
+- Use double quotes for where clauses
 
 
 
 ### Fillnull Command
 ---------------------
+
+If you run a report that includes nulls for some data, your report will display with empty fields.
+
+By default the null values are filled with zeros, but by using a value argument, any string can be used.
+
+```JavaScript
+index=sales sourcetype=vendor_sales
+| chart sum(price) over product_name by VendorCountry 
+| fillnull value="fill with something"
+```

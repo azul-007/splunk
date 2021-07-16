@@ -103,6 +103,16 @@ index=sales sourcetype=vendor_sales
 | stats sum(price) as TotalRevenue by SalesTerritory
 ```
 
+Use the if function of eval to create a new column named type. If the http_content_type value begins with “image”, set the type field to “graphic”. Otherwise, set the value to “other”.
+Hint: Use the LIKE operator and the % wildcard to define the expression as follows: http_content_type LIKE "image%"
+
+```JavaScript
+sourcetype=cisco_wsa_squid 
+| stats count by http_content_type
+| eval type = if (http_content_type LIKE "image%", "graphic", "other") 
+| chart sum(count) as total by type
+```
+
 
 ### Eval Case Function
 ---------------------

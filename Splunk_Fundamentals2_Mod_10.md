@@ -1,5 +1,9 @@
 # Tags and Event Types
 
+- Tags allow you to designate descriptive names for key-value pairs
+- Tags enable you to search for events that contain particular field values
+
+
 ## Table of Contents
 
 [Creating Tags](#creating-tags)
@@ -13,6 +17,9 @@
 [Edit Event Types](#edit-event-types)
 
 [Event Types vs Saved Reports](#event-types-vs-saved-reports)
+
+
+
 
 ### Creating Tags
 ------------

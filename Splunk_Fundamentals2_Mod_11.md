@@ -100,4 +100,6 @@ Splunk allows you to preview your search by expanding the entire search, without
 With your search in the search bar use the keyboard shortcut of CTRL + SHIFT+E (linux or windows) OR COMMAND+SHIFT+E (OSX). The search expansion tool will open
 and you will be able to see the search as it will be submitted.
 
+![Screen Shot 2021-07-28 at 9 59 56 PM](https://user-images.githubusercontent.com/15880042/127419895-d37f6cb1-24e1-42fd-937c-cada54077d65.png)
+
 

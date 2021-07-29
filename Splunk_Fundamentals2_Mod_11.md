@@ -69,6 +69,27 @@ index=sales sourcetype=vendor_sales
 ### Multiple Arguments
 ------------
 
+Since you are using a tostring function with the eval command, sorting results will result in them sorting alphanumerically.
+
+Add another argument that allows the user to choose if they want to convert the currency with the eval or fieldformat command. 
+
+Splunk allows you to validate the argument sent using an eval or boolean expression.
+
+Require that the 'cmd' argument passed to the macro is either fieldformat or eval, if not, send the user an error. Enter a boolean as our validation expression and 
+
+if the boolean is false in the validation error message field and save.
+
+![Screen Shot 2021-07-28 at 9 43 14 PM](https://user-images.githubusercontent.com/15880042/127418491-a5d2e7cf-f3c3-4cd1-9ddb-5b79354f335b.png)
+
+Now when you search, pass a command name as an argument
+
+```JavaScript
+index=sales sourcetype=vendor_sales
+| stats sum(sale_price) as Average_Price by product_name
+| `convertUSD("Average_Price")`
+| sort - Average_Price
+```
+
 
 
 ### Expanding Search

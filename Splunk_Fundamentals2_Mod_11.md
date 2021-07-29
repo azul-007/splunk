@@ -11,7 +11,7 @@ with complicated search syntax.
 
 [Create Macro](#create-macro)
 
-[Macro Argument](#marcro-argument)
+[Macro Argument](#macro-argument)
 
 [Multiple Arguments](#Multiple-Arguments)
 

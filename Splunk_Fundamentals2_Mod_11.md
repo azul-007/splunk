@@ -85,7 +85,7 @@ Now when you search, pass a command name as an argument
 
 ```JavaScript
 index=sales sourcetype=vendor_sales
-| stats sum(sale_price) as Average_Price by product_name
+| stats avg(sale_price) as Average_Price by product_name
 | `convertUSD("Average_Price")`
 | sort - Average_Price
 ```
@@ -94,3 +94,10 @@ index=sales sourcetype=vendor_sales
 
 ### Expanding Search
 ------------
+
+Splunk allows you to preview your search by expanding the entire search, without executing it, with it's built-in search expansion tool.
+
+With your search in the search bar use the keyboard shortcut of CTRL + SHIFT+E (linux or windows) OR COMMAND+SHIFT+E (OSX). The search expansion tool will open
+and you will be able to see the search as it will be submitted.
+
+

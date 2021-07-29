@@ -71,7 +71,7 @@ index=sales sourcetype=vendor_sales
 
 Since you are using a tostring function with the eval command, sorting results will result in them sorting alphanumerically.
 
-Add another argument that allows the user to choose if they want to convert the currency with the eval or fieldformat command. 
+Add another argument that allows the user to choose if they want to convert the currency with the eval or fieldformat command. Remember rename your macro to reflect the number of arguments in it's name.
 
 Splunk allows you to validate the argument sent using an eval or boolean expression.
 

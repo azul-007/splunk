@@ -16,6 +16,8 @@ Fields alias give you a way to normalize data over multiple sources. You can ass
 - Create a meaningful name for the field alias.
 - Select from sourcetype, source and host. Enter the name of the item to effect.
 - Map the existing field on the left, add the name of the alias on the right.
+<img width="1044" alt="Screen Shot 2021-07-30 at 7 20 07 PM" src="https://user-images.githubusercontent.com/15880042/127720463-47492652-c325-439c-803b-d813bdcd899b.png">
+
 
 
 
@@ -32,3 +34,6 @@ Create a calculated field by going to Settings:
 - Select from sourcetype, source and host. Enter the name of the item to effect.
 - Select a name for the field
 - Create your eval expression
+
+<img width="1080" alt="Screen Shot 2021-07-30 at 7 21 33 PM" src="https://user-images.githubusercontent.com/15880042/127720528-54264018-ee2a-46f9-83fe-4f2d9ea06016.png">
+

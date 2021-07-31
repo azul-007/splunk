@@ -58,3 +58,8 @@ Follow the same, exact same steps as the GET and POST, except this time select '
 
 Enter the search string to use when the action is launched. 
 
+![Screen Shot 2021-07-30 at 10 59 13 PM](https://user-images.githubusercontent.com/15880042/127726701-afab1d2f-35f1-4b5a-abcd-f0f6343d4faf.png)
+
+
+![Screen Shot 2021-07-30 at 11 04 49 PM](https://user-images.githubusercontent.com/15880042/127726824-db0e7060-d720-4d38-afcd-555487c1de79.png)
+

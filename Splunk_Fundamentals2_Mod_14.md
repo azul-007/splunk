@@ -14,6 +14,11 @@ Allows you to uniform data from multiple sourcetypes with different field names.
 ### Installing CIM
 ------------
 
+CIM add-on data allows you to:
+- validate indexed data i.e normalize the data
+- improve performance
+
+The add on is free. There's no additional indexing and does not affect license. It should only be installed on search heads or on singles instances of Splunk.
 
 
 ### CIM and Your Data
